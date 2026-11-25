@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>School dashboard — Em-Desh English Medium Private School</title>
+  <meta name="description" content="School office dashboard for learner registrations, admission applications, learner records and the school gallery.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0f2a5c">
+  <link rel="icon" type="image/jpeg" href="assets/emdesh-logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap"><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles.css?v=20261125p">
+</head>
+<body class="app-page dashboard-page">
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Em-Desh English Medium Private School — home">
+        <span class="brand-mark" aria-hidden="true">
+          <img class="brand-logo" src="assets/emdesh-logo.jpg" alt="">
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Em-Desh</span>
+          <span class="brand-sub">School office</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Website</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="fees.html">Fees</a></li>
+          <li><a href="apply.html">Apply</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="app-main">
+
+    <section class="auth-band admin-login-band" id="admin-login">
+      <div class="container admin-login-grid">
+        <div class="auth-card admin-login-card">
+          <header class="auth-card-head">
+            <p class="card-kicker">School office</p>
+            <h1 id="admin-login-title" tabindex="-1">Dashboard sign in</h1>
+            <p class="auth-sub">Manage learner registrations, records and applications for Em-Desh English Medium Private School.</p>
+          </header>
+
+          <button class="btn btn-primary btn-block" type="button" id="admin-open-code">Enter six-digit code</button>
+          <p class="form-status" id="admin-login-status" role="status" aria-live="polite"></p>
+
+          <p class="help-note">Use the six-digit staff code set by the site owner. Only school office staff should use this dashboard.</p>
+        </div>
+      </div>
+    </section>
+
+    <dialog class="code-dialog" id="admin-code-dialog" aria-labelledby="admin-code-title">
+      <form id="admin-login-form" class="code-console" novalidate>
+        <div class="code-console-screen">
+          <div class="code-console-display" id="admin-code-display" aria-live="polite" aria-label="No digits entered">______</div>
+          <span class="code-console-label" id="admin-code-title">STAFF ACCESS</span>
+        </div>
+        <div class="code-console-lights" aria-hidden="true"><span class="light light-red"></span><span class="light light-green"></span></div>
+        <p class="code-console-hint">Enter the six-digit staff code</p>
+        <div class="code-keypad" aria-label="Numeric keypad">
+          <button type="button" class="code-key" data-code-key="1">1</button>
+          <button type="button" class="code-key" data-code-key="2">2</button>
+          <button type="button" class="code-key" data-code-key="3">3</button>
+          <button type="button" class="code-key" data-code-key="4">4</button>
+          <button type="button" class="code-key" data-code-key="5">5</button>
+          <button type="button" class="code-key" data-code-key="6">6</button>
+          <button type="button" class="code-key" data-code-key="7">7</button>
+          <button type="button" class="code-key" data-code-key="8">8</button>
+          <button type="button" class="code-key" data-code-key="9">9</button>
+          <button type="button" class="code-key code-key-cancel" id="admin-code-cancel">CANCEL</button>
+          <button type="button" class="code-key" data-code-key="0">0</button>
+          <button type="submit" class="code-key code-key-enter" id="admin-login-submit">ENTER</button>
+        </div>
+        <p class="form-status code-console-status" id="admin-code-status" role="status" aria-live="polite"></p>
+      </form>
+    </dialog>
+
+    <section class="dashboard" id="dashboard" hidden>
+      <div class="container">
+
+        <header class="dash-head">
+          <div>
+            <p class="eyebrow">School office</p>
+            <h1 id="dashboard-title" tabindex="-1">Staff dashboard</h1>
+            <p class="dash-sub">Update the landing page and publish school photos.</p>
+          </div>
+          <div class="dash-actions">
+            <a class="btn btn-ghost" href="gallery.html">View public gallery</a>
+            <button class="btn btn-ghost" type="button" id="admin-signout">Sign out</button>
+          </div>
+        </header>
+
+        <div class="stat-grid">
+          <article class="stat-card" hidden>
+            <span class="stat-value" id="stat-total">—</span>
+            <span class="stat-label">Registered learners</span>
+          </article>
+          <article class="stat-card" hidden>
+            <span class="stat-value" id="stat-active">—</span>
+            <span class="stat-label">Active learners</span>
+          </article>
+          <article class="stat-card" hidden>
+            <span class="stat-value" id="stat-applications">—</span>
+            <span class="stat-label">New applications</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-value" id="stat-gallery">—</span>
+            <span class="stat-label">Gallery photos</span>
+          </article>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Dashboard sections">
+          <button class="tab" type="button" role="tab" id="tab-btn-learners" aria-controls="tab-learners" hidden>Learners</button>
+          <button class="tab" type="button" role="tab" id="tab-btn-applications" aria-controls="tab-applications" hidden>Applications</button>
+          <button class="tab" type="button" role="tab" id="tab-btn-homepage" aria-selected="true" aria-controls="tab-homepage">Homepage</button>
+          <button class="tab" type="button" role="tab" id="tab-btn-gallery" aria-selected="false" aria-controls="tab-gallery" tabindex="-1">Gallery</button>
+        </div>
+
+        <section class="panel" id="tab-learners" role="tabpanel" aria-labelledby="tab-btn-learners" hidden>
+          <header class="panel-head">
+            <div>
+              <h2>Registered learners</h2>
+              <p class="panel-note">Each registration receives a unique student ID and a six-digit PIN for the learner portal.</p>
+            </div>
+            <div class="panel-head-actions">
+              <button class="btn btn-ghost" type="button" id="import-learners">Import CSV</button>
+              <button class="btn btn-danger-ghost" type="button" id="delete-all-learners">Delete all</button>
+              <button class="btn btn-primary" type="button" id="add-learner">Register learner</button>
+            </div>
+          </header>
+
+          <div class="toolbar">
+            <div class="search-field">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5"/>
+                <path d="M16 16l4.5 4.5" stroke-linecap="round"/>
+              </svg>
+              <input type="search" id="learner-search" placeholder="Search name, student ID or guardian" aria-label="Search learners">
+            </div>
+            <p class="toolbar-count" id="learner-count" role="status" aria-live="polite">Loading…</p>
+          </div>
+
+          <p class="panel-error" id="learners-error" role="alert" hidden></p>
+
+          <div class="learner-groups" id="learners-groups" hidden></div>
+
+          <div class="empty-note" id="learners-empty" hidden>
+            <p id="learners-empty-text">No learners registered yet. Use “Register learner” to add the first one.</p>
+          </div>
+        </section>
+
+        <section class="panel" id="tab-applications" role="tabpanel" aria-labelledby="tab-btn-applications" hidden>
+          <header class="panel-head">
+            <div>
+              <h2>Admission applications</h2>
+              <p class="panel-note">Sent from the Apply page. Mark each application as contacted or archived once it has been handled.</p>
+            </div>
+          </header>
+
+          <div class="toolbar">
+            <p class="toolbar-count" id="application-count" role="status" aria-live="polite">Loading…</p>
+          </div>
+
+          <p class="panel-error" id="applications-error" role="alert" hidden></p>
+
+          <div class="application-list" id="applications-list"></div>
+
+          <div class="empty-note" id="applications-empty" hidden>
+            <p>No applications yet. Submissions from the Apply page will appear here.</p>
+          </div>
+        </section>
+
+        <section class="panel" id="tab-homepage" role="tabpanel" aria-labelledby="tab-btn-homepage">
+          <header class="panel-head">
+            <div>
+              <h2>Homepage updates</h2>
+              <p class="panel-note">Edit the public notice and choose which uploaded photos appear in the landing-page hero and recent events.</p>
+            </div>
+          </header>
+
+          <form class="content-editor" id="homepage-settings-form" novalidate>
+            <label class="check-field content-toggle">
+              <input type="checkbox" id="homepage-notification-enabled">
+              <span><strong>Show notification banner</strong><small>Visitors will see this notice near the top of the landing page.</small></span>
+            </label>
+            <div class="field">
+              <label for="homepage-notification-text">Notification text</label>
+              <textarea class="input" id="homepage-notification-text" rows="3" maxlength="240" placeholder="Registration for the 2027 school year is now open."></textarea>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label for="homepage-notification-link-text">Button text <span class="optional">(optional)</span></label>
+                <input class="input" id="homepage-notification-link-text" maxlength="80" placeholder="Apply now">
+              </div>
+              <div class="field">
+                <label for="homepage-notification-link-url">Button link <span class="optional">(optional)</span></label>
+                <input class="input" id="homepage-notification-link-url" type="url" maxlength="300" placeholder="apply.html or https://…">
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit" id="homepage-settings-submit">Save homepage notice</button>
+            <p class="form-status" id="homepage-settings-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <form class="content-editor homepage-video-editor" id="welcome-video-form" novalidate>
+            <h3>Welcome video</h3>
+            <p class="panel-note">Upload an MP4 or WebM video up to 25 MB. A new upload replaces the current welcome video on the landing page.</p>
+            <label class="file-drop" for="welcome-video-file" id="welcome-video-drop">
+              <input type="file" id="welcome-video-file" accept="video/mp4,video/webm" required>
+              <span class="file-drop-text" id="welcome-video-label">Choose a welcome video from this device</span>
+            </label>
+            <video class="upload-preview" id="welcome-video-preview" controls muted playsinline hidden></video>
+            <button class="btn btn-primary" type="submit" id="welcome-video-submit">Replace welcome video</button>
+            <p class="form-status" id="welcome-video-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="homepage-help">
+            <h3>Homepage photo placements</h3>
+            <p>Use the Gallery tab to upload an image. Choose <strong>Landing page background image</strong> to set the picture behind the welcome text at the top of the landing page, or <strong>Recent event</strong> to add it to the switchable news containers. Existing gallery photos remain on the public gallery page.</p>
+          </div>
+        </section>
+
+        <section class="panel" id="tab-gallery" role="tabpanel" aria-labelledby="tab-btn-gallery" hidden>
+          <header class="panel-head">
+            <div>
+              <h2>School gallery</h2>
+              <p class="panel-note">Photos published here appear on the public gallery page.</p>
+            </div>
+          </header>
+
+          <div class="upload-grid">
+            <form class="upload-form" id="photo-form" novalidate>
+              <h3 class="upload-title">Add a photo</h3>
+              <p class="panel-note">JPG, PNG or WebP up to 5 MB.</p>
+
+              <label class="file-drop" for="photo-file" id="file-drop">
+                <input type="file" id="photo-file" accept="image/jpeg,image/png,image/webp" required>
+                <span class="file-drop-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2"/>
+                    <circle cx="9" cy="10" r="1.7"/>
+                    <path d="M21 16l-5.2-5.2L9 18"/>
+                  </svg>
+                </span>
+                <span class="file-drop-text" id="file-label">Choose a photo from this device</span>
+              </label>
+
+              <img class="upload-preview" id="photo-preview" alt="Selected photo preview" hidden>
+
+              <div class="field">
+                <label for="photo-caption">Caption <span class="optional">(optional)</span></label>
+                <input class="input" id="photo-caption" type="text" maxlength="120" placeholder="Sports day at the mission">
+              </div>
+
+              <div class="field">
+                <label for="photo-placement">Homepage placement</label>
+                <select class="input" id="photo-placement">
+                  <option value="gallery">Gallery page only</option>
+                  <option value="news">Recent events on homepage only</option>
+                  <option value="hero">Landing page background image</option>
+                </select>
+              </div>
+
+              <button class="btn btn-primary btn-block" type="submit" id="photo-submit">Publish photo</button>
+              <p class="form-status" id="photo-status" role="status" aria-live="polite"></p>
+            </form>
+
+            <div class="gallery-manage">
+              <div class="gallery-manage-head">
+                <div>
+                  <h3 class="upload-title">Published photos</h3>
+                  <p class="panel-note" id="admin-gallery-count">Loading…</p>
+                </div>
+              </div>
+              <p class="panel-error" id="gallery-error" role="alert" hidden></p>
+              <div class="admin-gallery" id="admin-gallery"></div>
+              <div class="empty-note" id="admin-gallery-empty" hidden>
+                <p>No photos yet. Upload the first photo for the gallery.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer footer-compact">
+    <div class="container footer-bottom">
+      <p>Em-Desh English Medium Private School &middot; school office dashboard</p>
+      <p><a href="index.html">Back to the school website</a></p>
+    </div>
+  </footer>
+
+  <dialog class="sheet" id="learner-dialog" aria-labelledby="learner-dialog-title">
+    <form id="learner-form" novalidate>
+      <div class="sheet-head">
+        <div>
+          <p class="card-kicker" id="learner-dialog-kicker">Registration</p>
+          <h2 id="learner-dialog-title">Register a learner</h2>
+        </div>
+        <button class="icon-btn" type="button" data-close="learner-dialog" aria-label="Close">&times;</button>
+      </div>
+
+      <div class="sheet-body">
+        <input type="hidden" id="learner-id">
+        <div class="grid-2">
+          <div class="field">
+            <label for="learner-first">First name</label>
+            <input class="input" id="learner-first" type="text" maxlength="80" autocomplete="off" required>
+          </div>
+          <div class="field">
+            <label for="learner-last">Last name</label>
+            <input class="input" id="learner-last" type="text" maxlength="80" autocomplete="off" required>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="learner-grade">Grade</label>
+            <select class="input" id="learner-grade" required>
+              <option value="KG">Kindergarten / Pre-Primary</option>
+              <option value="1">Grade 1</option>
+              <option value="2">Grade 2</option>
+              <option value="3">Grade 3</option>
+              <option value="4">Grade 4</option>
+              <option value="5">Grade 5</option>
+              <option value="6">Grade 6</option>
+              <option value="7">Grade 7</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="learner-class">Class <span class="optional">(optional)</span></label>
+            <input class="input" id="learner-class" type="text" maxlength="20" autocomplete="off" placeholder="e.g. A, Blue or Pre-Primary">
+          </div>
+        </div>
+        <div class="field">
+          <label for="learner-guardian">Guardian name <span class="optional">(optional)</span></label>
+          <input class="input" id="learner-guardian" type="text" maxlength="100" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="learner-phone">Guardian phone <span class="optional">(optional)</span></label>
+          <input class="input" id="learner-phone" type="tel" maxlength="40" autocomplete="off">
+        </div>
+        <p class="form-status" id="learner-status" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="sheet-foot">
+        <button class="btn btn-ghost" type="button" data-close="learner-dialog">Cancel</button>
+        <button class="btn btn-primary" type="submit" id="learner-submit">Save learner</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="sheet sheet-wide" id="bulk-dialog" aria-labelledby="bulk-title">
+    <div class="sheet-head">
+      <div>
+        <p class="card-kicker" id="bulk-kicker">Bulk registration</p>
+        <h2 id="bulk-title">Import learners from CSV</h2>
+        <p class="records-sub">Review every row before saving. No records are created until you confirm the import.</p>
+      </div>
+      <button class="icon-btn" type="button" data-close="bulk-dialog" aria-label="Close">&times;</button>
+    </div>
+    <div class="sheet-body" id="bulk-setup">
+      <div class="bulk-instructions">
+        <p><strong>One learner per row.</strong> First name, last name and grade are required. Class, guardian name and guardian phone are optional.</p>
+        <p class="field-hint">Grades can be KG, Kindergarten, Pre-Primary, or 1–7. Use the template to avoid column-name mistakes.</p>
+      </div>
+      <div class="bulk-actions">
+        <button class="btn btn-ghost" type="button" id="download-template">Download CSV template</button>
+        <label class="btn btn-primary file-button" for="bulk-file">Choose completed CSV<input type="file" id="bulk-file" accept=".csv,text/csv" hidden></label>
+      </div>
+      <p class="form-status" id="bulk-status" role="status" aria-live="polite"></p>
+      <div class="bulk-summary" id="bulk-summary" hidden></div>
+      <div class="bulk-preview-wrap" id="bulk-preview-wrap" hidden>
+        <div class="bulk-preview-head">
+          <h3>Import preview</h3>
+          <p class="field-hint">Rows marked “Ready” will be registered. Fix other rows in the spreadsheet and select it again.</p>
+        </div>
+        <div class="bulk-preview" id="bulk-preview"></div>
+      </div>
+    </div>
+    <div class="sheet-body bulk-results" id="bulk-results" hidden>
+      <div class="bulk-summary" id="bulk-result-summary"></div>
+      <p class="notice">These PINs are shown only once. Print or save this sheet securely before closing.</p>
+      <div class="credentials-list" id="bulk-credentials"></div>
+      <p class="panel-error" id="bulk-failures" hidden></p>
+    </div>
+    <div class="sheet-foot">
+      <button class="btn btn-ghost" type="button" data-close="bulk-dialog" id="bulk-close">Cancel</button>
+      <button class="btn btn-ghost" type="button" id="bulk-print" hidden>Print credentials</button>
+      <button class="btn btn-primary" type="button" id="bulk-import" disabled>Register ready learners</button>
+    </div>
+  </dialog>
+
+  <dialog class="sheet" id="delete-all-dialog" aria-labelledby="delete-all-title">
+    <form id="delete-all-form" novalidate>
+      <div class="sheet-head">
+        <div>
+          <p class="card-kicker">Permanent action</p>
+          <h2 id="delete-all-title">Delete all learners?</h2>
+        </div>
+        <button class="icon-btn" type="button" data-close="delete-all-dialog" aria-label="Close">&times;</button>
+      </div>
+      <div class="sheet-body">
+        <p class="danger-notice">This will permanently delete <strong id="delete-all-count">0 learners</strong>, their portal sessions, behaviour notes, test results, report cards and stored report files. This cannot be undone.</p>
+        <div class="field">
+          <label for="delete-all-confirmation">Type <strong>delete all learners</strong> to continue</label>
+          <input class="input" id="delete-all-confirmation" type="text" autocomplete="off" spellcheck="false" required>
+        </div>
+        <p class="form-status" id="delete-all-status" role="status" aria-live="polite"></p>
+      </div>
+      <div class="sheet-foot">
+        <button class="btn btn-ghost" type="button" data-close="delete-all-dialog">Cancel</button>
+        <button class="btn btn-danger" type="submit" id="delete-all-submit" disabled>Delete all learners</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="sheet" id="pin-dialog" aria-labelledby="pin-title">
+    <div class="sheet-head">
+      <div>
+        <p class="card-kicker" id="pin-kicker">Learner registered</p>
+        <h2 id="pin-title">Share the sign-in details</h2>
+      </div>
+      <button class="icon-btn" type="button" data-close="pin-dialog" aria-label="Close">&times;</button>
+    </div>
+    <div class="sheet-body">
+      <p class="notice">Write down or copy these details now. The PIN is stored securely and cannot be shown again.</p>
+      <p class="pin-meta" id="pin-name"></p>
+      <p class="pin-meta"><span class="mono" id="pin-student-id"></span></p>
+      <div class="pin-display" id="pin-value" aria-label="PIN"></div>
+      <button class="btn btn-ghost btn-block" type="button" id="pin-copy">Copy student ID and PIN</button>
+      <p class="form-status" id="pin-copy-status" role="status" aria-live="polite"></p>
+    </div>
+    <div class="sheet-foot">
+      <button class="btn btn-primary" type="button" data-close="pin-dialog">Done</button>
+    </div>
+  </dialog>
+
+  <dialog class="sheet sheet-wide" id="records-dialog" aria-labelledby="records-title">
+    <div class="sheet-head">
+      <div>
+        <p class="card-kicker">Learner records</p>
+        <h2 id="records-title">Records</h2>
+        <p class="records-sub" id="records-sub"></p>
+      </div>
+      <button class="icon-btn" type="button" data-close="records-dialog" aria-label="Close">&times;</button>
+    </div>
+    <div class="sheet-body">
+      <p class="panel-error" id="records-error" role="alert" hidden></p>
+
+      <div class="records-grid">
+        <section class="records-section" aria-labelledby="behavior-heading">
+          <div class="records-section-head">
+            <h3 id="behavior-heading">Behaviour notes</h3>
+            <span class="records-count" id="behavior-count">0</span>
+          </div>
+          <form class="record-form" id="behavior-form" novalidate>
+            <div class="field">
+              <label for="behavior-note">New note</label>
+              <textarea class="input" id="behavior-note" rows="3" maxlength="500" required placeholder="Behaviour, effort or an incident"></textarea>
+            </div>
+            <div class="record-form-row">
+              <div class="field">
+                <label for="behavior-date">Date <span class="optional">(today if blank)</span></label>
+                <input class="input" id="behavior-date" type="date">
+              </div>
+              <button class="btn btn-primary btn-sm" type="submit" id="behavior-submit">Add note</button>
+            </div>
+            <p class="form-status" id="behavior-status" role="status" aria-live="polite"></p>
+          </form>
+          <ul class="record-items" id="behavior-list"></ul>
+          <p class="record-empty" id="behavior-empty" hidden>No behaviour notes recorded yet.</p>
+        </section>
+
+        <section class="records-section" aria-labelledby="tests-heading">
+          <div class="records-section-head">
+            <h3 id="tests-heading">Test results</h3>
+            <span class="records-count" id="tests-count">0</span>
+          </div>
+          <form class="record-form" id="test-form" novalidate>
+            <div class="record-form-row">
+              <div class="field">
+                <label for="test-subject">Subject</label>
+                <input class="input" id="test-subject" type="text" maxlength="60" required placeholder="Mathematics">
+              </div>
+              <div class="field">
+                <label for="test-score">Score (%)</label>
+                <input class="input" id="test-score" type="number" min="0" max="100" step="1" required placeholder="85">
+              </div>
+            </div>
+            <div class="record-form-row">
+              <div class="field">
+                <label for="test-term">Term <span class="optional">(optional)</span></label>
+                <input class="input" id="test-term" type="text" maxlength="40" placeholder="Term 2, 2026">
+              </div>
+              <div class="field">
+                <label for="test-date">Date <span class="optional">(today if blank)</span></label>
+                <input class="input" id="test-date" type="date">
+              </div>
+            </div>
+            <button class="btn btn-primary btn-sm" type="submit" id="test-submit">Add result</button>
+            <p class="form-status" id="test-status" role="status" aria-live="polite"></p>
+          </form>
+          <ul class="record-items" id="test-list"></ul>
+          <p class="record-empty" id="test-empty" hidden>No test results recorded yet.</p>
+        </section>
+      </div>
+
+      <section class="records-section" aria-labelledby="reports-heading">
+        <div class="records-section-head">
+          <h3 id="reports-heading">Report cards</h3>
+          <span class="records-count" id="report-count">0</span>
+        </div>
+        <form class="record-form" id="report-form" novalidate>
+          <div class="record-form-row">
+            <div class="field">
+              <label for="report-file">Document</label>
+              <input class="input file-input" id="report-file" type="file" accept="application/pdf,image/jpeg,image/png,image/webp" required>
+            </div>
+            <div class="field">
+              <label for="report-term">Term <span class="optional">(optional)</span></label>
+              <input class="input" id="report-term" type="text" maxlength="40" placeholder="Term 2, 2026">
+            </div>
+          </div>
+          <p class="field-hint">PDF, JPG, PNG or WebP up to 10 MB. Report cards appear in the learner portal.</p>
+          <button class="btn btn-primary btn-sm" type="submit" id="report-submit">Upload report card</button>
+          <p class="form-status" id="report-status" role="status" aria-live="polite"></p>
+        </form>
+        <ul class="record-items" id="report-list"></ul>
+        <p class="record-empty" id="report-empty" hidden>No report cards uploaded yet.</p>
+      </section>
+    </div>
+    <div class="sheet-foot">
+      <button class="btn btn-ghost" type="button" data-close="records-dialog">Close</button>
+    </div>
+  </dialog>
+
+  <dialog class="sheet" id="confirm-dialog" aria-labelledby="confirm-title">
+    <div class="sheet-head">
+      <div>
+        <p class="card-kicker">Please confirm</p>
+        <h2 id="confirm-title">Are you sure?</h2>
+      </div>
+      <button class="icon-btn" type="button" data-close="confirm-dialog" aria-label="Close">&times;</button>
+    </div>
+    <div class="sheet-body">
+      <p id="confirm-message"></p>
+    </div>
+    <div class="sheet-foot">
+      <button class="btn btn-ghost" type="button" id="confirm-cancel" data-close="confirm-dialog">Cancel</button>
+      <button class="btn btn-primary" type="button" id="confirm-ok">Continue</button>
+    </div>
+  </dialog>
+
+  <section class="print-letter" id="print-letter"></section>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="app.js?v=20261125p" defer></script>
+  <script type="module" src="admin.js?v=20261125f"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "redirects": [
+    {
+      "source": "/admin.html",
+      "destination": "https://project--cf4a80e7-8301-450b-b19f-d5fb82508f21.lovable.app/admin.html",
+      "permanent": false
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}
