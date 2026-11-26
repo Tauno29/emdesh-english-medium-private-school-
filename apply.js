@@ -128,7 +128,14 @@ form.addEventListener('submit', async (event) => {
     data.append('website', form.elements.website.value);
     data.append('entries', JSON.stringify(entries));
     data.append('photo', file);
-    const res = await fetch((/lovable\.app$|localhost/.test(location.hostname) ? '' : 'https://project--cf4a80e7-8301-450b-b19f-d5fb82508f21.lovable.app/api/public') + (/lovable\.app$|localhost/.test(location.hostname) ? '/api/application' : '/application'), { method: 'POST', body: data });
+    const LOV = 'https://project--cf4a80e7-8301-450b-b19f-d5fb82508f21.lovable.app';
+    const onLovable = /lovable\.app$|localhost/.test(location.hostname);
+    const urls = onLovable ? ['/api/public/application', LOV + '/api/public/application'] : [LOV + '/api/public/application', 'https://emdesh-english-medium-private-school.lovable.app/api/public/application'];
+    let res;
+    for (const u of urls) {
+      try { res = await fetch(u, { method: 'POST', body: data }); break; } catch (e) { console.warn('send failed', u, e); }
+    }
+    if (!res) throw new Error('We could not reach the school server. Please check your internet connection and try again.');
     const result = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(ERRORS[result.error] || 'Your application could not be sent. Please try again.');
 
