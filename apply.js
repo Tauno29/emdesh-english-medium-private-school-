@@ -157,7 +157,7 @@ form.addEventListener('submit', async (event) => {
       if (!sent.success) console.warn('Application saved but email forwarding failed');
     }
 
-    doneText.textContent = `Thank you. The application for ${childName} (${grade}${hostel === 'Yes' ? ', with hostel' : ''}) has been sent to the school office. Remember to email your proof of registration payment to emdesh2019@gmail.com with your child’s name and grade as reference.`;
+    doneText.textContent = `Thank you. The application for ${childName} (${grade}${hostel === 'Yes' ? ', with hostel' : ''}) has been sent to the school office. Remember to email your proof of registration payment to taunonakasole4@gmail.com with your child’s name and grade as reference.`;
     form.reset();
     body.hidden = true;
     formType = '';
